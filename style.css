@@ -1,0 +1,882 @@
+:root {
+    --primary-bg: #0a0a0a;
+    --card-bg: #151515;
+    --accent-blue: #1e40af;
+    --accent-purple: #4c1d95;
+    --accent-green: #059669;
+    --accent-red: #dc2626;
+    --accent-amber: #d97706;
+    --text-primary: #f1f5f9;
+    --text-secondary: #64748b;
+    --border-color: #1f1f1f;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --card-radius: 16px;
+    --subtle-glow: 0 0 20px rgba(30, 64, 175, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Минимальный анимированный фон */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bg-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(30, 64, 175, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 64, 175, 0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    animation: grid-move 60s linear infinite;
+}
+
+@keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(80px, 80px); }
+}
+
+.floating-particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(30, 64, 175, 0.4);
+    border-radius: 50%;
+    animation: float 12s ease-in-out infinite;
+}
+
+.particle:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 70%; left: 80%; animation-delay: 3s; }
+.particle:nth-child(3) { top: 40%; left: 60%; animation-delay: 6s; }
+.particle:nth-child(4) { top: 85%; left: 30%; animation-delay: 9s; }
+.particle:nth-child(5) { top: 25%; left: 75%; animation-delay: 15s; }
+.particle:nth-child(6) { top: 60%; left: 15%; animation-delay: 15s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); opacity: 0.4; }
+    50% { transform: translateY(-30px); opacity: 0.8; }
+}
+
+.neural-network {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.neural-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(30, 64, 175, 0.1), transparent);
+    height: 1px;
+    width: 100%;
+    animation: neural-pulse 8s ease-in-out infinite;
+}
+
+.neural-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+.neural-line:nth-child(2) { top: 50%; animation-delay: 3s; }
+.neural-line:nth-child(3) { top: 80%; animation-delay: 6s; }
+
+@keyframes neural-pulse {
+    0%, 100% { opacity: 0; transform: scaleX(0); }
+    50% { opacity: 0.2; transform: scaleX(1); }
+}
+
+.analytics-app {
+    background: linear-gradient(145deg, rgba(21, 21, 21, 0.98), rgba(10, 10, 10, 0.98));
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    height: calc(100vh - 40px);
+    position: relative;
+}
+
+.glow-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--card-radius);
+    background: linear-gradient(45deg, rgba(30, 64, 175, 0.1), rgba(76, 29, 149, 0.1));
+    opacity: 0;
+    transition: opacity 2s ease;
+    z-index: -1;
+    animation: subtle-glow 4s ease-in-out infinite;
+}
+
+@keyframes subtle-glow {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.3; }
+}
+
+.app-header {
+    padding: 10px 24px 10px; /* Увеличили верхний отступ */
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(21, 21, 21, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+	height: 5px;
+    gap: 12px;
+	margin-bottom: 0px;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(45deg, var(--accent-blue), rgba(76, 29, 149, 0.8));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+    box-shadow: var(--subtle-glow);
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+	
+    color: var(--text-primary);
+}
+
+.status-indicator {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    animation: status-blink 3s ease-in-out infinite;
+}
+
+@keyframes status-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.app-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.title-glow {
+    display: none;
+}
+
+.app-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.main-content {
+    padding: 24px;
+}
+
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Обновленные стили для market-tabs с анимированным слайдером */
+.market-tabs {
+    display: flex;
+    background: rgba(30, 64, 175, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.tab-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: var(--accent-blue);
+    border-radius: 10px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+
+.market-tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 2;
+}
+
+.market-tab.active {
+    color: white;
+}
+
+.market-tab:hover:not(.active) {
+    color: var(--text-primary);
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.currency-pair {
+    flex: 1;
+    min-width: 0;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.modern-select {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(30, 64, 175, 0.05);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 14px;
+    transition: var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    cursor: pointer;
+    padding-left: 50px; /* Увеличили место для флагов */
+}
+
+.select-glow {
+    display: none;
+}
+
+.modern-select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background: rgba(30, 64, 175, 0.1);
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+.modern-select option {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+}
+
+/* Флаги для валютных пар в стиле TradingView */
+.currency-flags {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 20px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.flag {
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.base-flag {
+    bottom: -2px;
+    left: 0;
+    z-index: 4;
+}
+
+.quote-flag {
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+
+.input-group {
+    position: relative;
+}
+
+.icon-selector {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(30, 64, 175, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 18px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(30, 64, 175, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.icon-btn:active .btn-ripple {
+    width: 60px;
+    height: 60px;
+}
+
+.icon-btn:hover {
+    background: rgba(30, 64, 175, 0.1);
+    color: var(--text-primary);
+    border-color: var(--accent-blue);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    min-width: 120px;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    padding: 8px;
+    right: 0;
+    margin-top: 5px;
+}
+
+.dropdown-content div {
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.dropdown-content div.active {
+    background: rgba(30, 64, 175, 0.2);
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.dropdown-content div:hover {
+    background: rgba(30, 64, 175, 0.1);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--accent-blue), rgba(76, 29, 149, 0.8));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 3;
+}
+
+.btn-loading-bg {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.primary-btn.analyzing .btn-loading-bg {
+    opacity: 1;
+    animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--subtle-glow);
+}
+
+.primary-btn:disabled {
+    background: #374151;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Расширенные прямоугольники для сигналов */
+.signal-containers {
+    padding: 1px 1px; /* Добавили верхний отступ после разделителя */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+/* Верхний прямоугольник с информацией о сигнале */
+.signal-info-container {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+	margin-top: -15px;
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.signal-direction {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.signal-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 12px;
+    background: var(--text-secondary);
+    color: var(--primary-bg);
+    transition: var(--transition);
+}
+
+.signal-icon.buy {
+    background: var(--accent-green);
+    color: white;
+}
+
+.signal-icon.sell {
+    background: var(--accent-red);
+    color: white;
+}
+
+.signal-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.signal-text.buy {
+    color: var(--accent-green);
+}
+
+.signal-text.sell {
+    color: var(--accent-red);
+}
+
+.signal-time {
+    font-size: 18px;
+    font-weight: 700;
+	margin-left: -31px;
+    color: var(--text-primary); /* Изменили цвет на такой же как у таймера */
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    flex: 1;
+    letter-spacing: 1px; /* Добавили межсимвольный интервал для лучшего выравнивания */
+}
+
+.signal-accuracy {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent-amber);
+}
+
+/* Нижний прямоугольник с таймером */
+.timer-container {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+	min-height: 50px;
+	max-height: 120px;
+    border-radius: 12px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.timer-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-align: left;
+    font-weight: 500;
+}
+
+.timer-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.2); /* Добавили свечение */
+}
+
+.timer-bar.inactive {
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.1) 4px,
+        transparent 4px,
+        transparent 8px
+    );
+    box-shadow: none;
+}
+
+.timer-progress {
+    position: absolute;
+    top: 0;
+    left: 0; /* Изменили обратно на left */
+    height: 100%;
+    width: 0%; /* Начинаем с 0% */
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    border-radius: 20px;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 6px rgba(30, 64, 175, 0.2); /* Добавили свечение */
+}
+
+.timer-progress.filling {
+    animation: fillProgress var(--fill-duration, 5s) linear forwards;
+}
+
+.timer-progress.draining {
+    width: 100%;
+    transition: width 0.1s linear;
+}
+
+.timer-progress.resetting {
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.1) 4px,
+        transparent 4px,
+        transparent 8px
+    );
+    box-shadow: none;
+}
+
+@keyframes fillProgress {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+.timer-display {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px; /* Добавили межсимвольный интервал */
+}
+
+.signal-section {
+    padding: 0 24px 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--border-color);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Контейнер для графика TradingView - зафиксирован по высоте */
+.tradingview-chart-container {
+    flex: 1;
+    min-height: 425px; /* Уменьшили высоту для стабильности */
+    max-height: 425px; /* Зафиксировали максимальную высоту */
+    margin-bottom: 0;
+    border-radius: 0;
+    overflow: hidden;
+    margin-left: -24px;
+    margin-right: -24px;
+	margin-top: -10px;
+    width: calc(100% + 48px);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+#tradingview-chart-standard,
+#tradingview-chart-otc {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 425px !important;
+    max-height: 425px !important;
+}
+
+.chart-overlay {
+    display: none;
+}
+
+.otc-chart {
+    filter: brightness(0.7) saturate(0);
+    opacity: 0.9;
+}
+
+#tradingview-chart-container-otc {
+    display: none;
+}
+
+.app-footer {
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid var(--border-color);
+    position: relative;
+}
+
+.footer-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--accent-blue);
+    opacity: 0.1;
+    animation: footer-pulse 6s ease-in-out infinite;
+}
+
+@keyframes footer-pulse {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 480px) {
+    .app-header {
+        padding: 20px 20px 16px;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+ 
+    .signal-containers {
+        padding: 16px 16px;
+    }
+    
+    .signal-section {
+        padding: 0 20px 0;
+    }
+    
+    .input-row {
+        gap: 8px;
+    }
+    
+    .icon-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .primary-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+    
+    .tradingview-chart-container {
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
+        min-height: 400px;
+        max-height: 400px;
+    }
+    
+    #tradingview-chart-standard,
+    #tradingview-chart-otc {
+        min-height: 400px !important;
+        max-height: 400px !important;
+    }
+    
+    .signal-info-container {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 16px;
+    }
+    
+    .signal-direction {
+        justify-content: center;
+    }
+    
+    .timer-container {
+        padding: 16px;
+    }
+}
+
+/* Убираем лишние анимации */
+.btn-float,
+.hologram-text {
+    display: none;
+}
+
+/* Минимальные hover эффекты */
+.icon-btn:hover {
+    animation: none;
+}
+
+.app-title span {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+    animation: none;
+}
+
+/* Плавные переходы для прогресс‑бара */
+.timer-progress {
+    width: 0;
+}
+.timer-progress.filling,
+.timer-progress.draining {
+    /* здесь ваши базовые стили полоски (градиент/фон/высота) */
+}
+
+/* Оверлей закрытого рынка */
+.market-closed {
+    position: relative;
+}
+.market-closed::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(139, 0, 0, 0.8);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Стиль текста UNAVAILABLE */
+.otc-unavailable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #222;
+    color: #fff;
+    font-size: 1.2em;
+    user-select: none;
+}
+
+/* Контейнер стандарного графика должен быть position: relative */
+#tradingview-chart-container-standard {
+  position: relative;
+}
+
+/* Оверлей, который появляется при закрытом рынке */
+.market-closed-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(71, 2, 2, 0.9);  /* тёмно‑красный фон */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  mix-blend-mode: multiply;
+}
+
+.market-closed-overlay .overlay-content {
+  text-align: center;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.market-closed-overlay .overlay-content i {
+  font-size: 2em;
+  margin-bottom: 0.3em;
+}

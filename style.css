@@ -1,0 +1,511 @@
+:root {
+    --primary-bg: #0f172a;
+    --card-bg: #1e293b;
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --accent-amber: #f59e0b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --card-radius: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.analytics-app {
+    background-color: var(--card-bg);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 420px;
+    height: calc(100vh - 40px); /* Занимает всю высоту экрана */
+}
+
+.app-header {
+    padding: 18px 24px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo h1 {
+    font-size: 24px;
+}
+
+.app-title {
+    font-size: 16px;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.app-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.main-content {
+    padding: 24px;
+}
+
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.market-tabs {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.market-tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.market-tab.active {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+.input-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.currency-pair {
+    flex: 1;
+    min-width: 0;
+}
+
+.icon-selector {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: var(--transition);
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    min-width: 120px;
+    box-shadow: var(--shadow);
+    z-index: 1;
+    padding: 8px;
+    right: 0;
+    margin-top: 5px;
+}
+
+.dropdown-content div {
+    color: var(--text-primary);
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+/* Подсветка активного таймфрейма */
+.dropdown-content div.active {
+    background-color: rgba(59, 130, 246, 0.3);
+    font-weight: 600;
+}
+
+.dropdown-content div:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modern-select {
+    width: 100%;
+    padding: 12px 14px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 14px;
+    transition: var(--transition);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    cursor: pointer;
+}
+
+.modern-select option {
+    background-color: #1e293b;
+    color: #ffffff;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.modern-select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.modern-select option:checked {
+    background-color: var(--accent-blue);
+    color: white;
+    font-weight: 600;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(to right, var(--accent-purple), var(--accent-blue));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(139, 92, 246, 0.4);
+}
+
+.primary-btn:disabled {
+    background: #4b5563;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    animation: analyzing-pulse 1.5s infinite;
+}
+
+@keyframes analyzing-pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.signal-section {
+    padding: 0 24px 0; /* Убрали нижний отступ */
+    background-color: rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--border-color);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.signal-display-container {
+    position: relative;
+    min-height: 120px;
+    margin-bottom: 8px;
+}
+
+.signal-content {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.signal-direction-container {
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    margin-top: -10px;
+}
+
+.signal-result {
+    width: 100%;
+    display: none;
+}
+
+.signal-direction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.signal-time-range {
+    font-size: 14px;
+    color: var(--text-secondary);
+    min-width: 65px;
+    text-align: left;
+}
+
+.signal-action {
+    flex-grow: 1;
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.signal-action.buy {
+    color: var(--accent-green);
+}
+
+.signal-action.sell {
+    color: var(--accent-red);
+}
+
+.signal-percentage {
+    min-width: 45px;
+    text-align: right;
+    font-weight: 700;
+    color: var(--accent-amber);
+}
+
+.get-signal-link {
+    color: #3b82f6;
+    font-weight: 700;
+}
+
+.signal-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-radius: 12px;
+    z-index: 10;
+}
+
+.signal-loading .loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    max-width: 90%;
+    padding: 0;
+}
+
+.loading-inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.mini-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(59, 130, 246, 0.2);
+    border-top: 2px solid var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.signal-loading p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Контейнер для графика TradingView */
+.tradingview-chart-container {
+    flex: 1;
+    min-height: 0;
+    margin-bottom: 0;
+    border-radius: 0px;
+    overflow: hidden;
+    border-left: none;
+    border-right: none;
+    margin-left: -24px;
+    margin-right: -24px;
+    width: calc(100% + 48px);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+#tradingview-chart-standard,
+#tradingview-chart-otc {
+    width: 100%;
+    height: 100%;
+}
+
+/* Стили для затемненного OTC графика */
+.otc-chart {
+    filter: brightness(0.7) saturate(0);
+    opacity: 0.9;
+}
+
+/* Скрываем OTC график по умолчанию */
+#tradingview-chart-container-otc {
+    display: none;
+}
+
+.app-footer {
+    padding: 16px 24px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--border-color);
+}
+
+.copyright {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 480px) {
+    .app-header {
+        padding: 16px 20px;
+    }
+    
+    .signal-section {
+        padding: 0 20px 0; /* Убрали нижний отступ */
+        min-height: auto !important;
+    }
+    
+    .input-row {
+        gap: 8px;
+    }
+    
+    .icon-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .signal-message {
+        font-size: 14px;
+    }
+    
+    .signal-direction {
+        font-size: 16px;
+    }
+    
+    .signal-time-range {
+        font-size: 13px;
+    }
+    
+    .signal-percentage {
+        font-size: 15px;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    .settings-section {
+        gap: 16px;
+    }
+    
+    .primary-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+    
+    .signal-display-container {
+        min-height: 100px;
+    }
+    
+    .tradingview-chart-container {
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
+    }
+}

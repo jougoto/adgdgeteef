@@ -144,8 +144,8 @@ const data = [
                 id: "withdraw",
                 q: { ru: "Смогу ли я вывести свою прибыль?", en: "Will I be able to withdraw my profits?" },
                 a: {
-                    ru: `Да, вывод средств происходит без проблем. Pocket Option работает во многих странах, предлагая вывод средств на карты, кошельки и криптовалюты. Обратитесь в службу поддержки, так как некоторые варианты могут быть недоступны на момент чтения.`,
-                    en: `Yes, withdrawals are processed without any problems. Pocket Option operates in many countries, offering withdrawals to cards, wallets, and cryptocurrencies. Check with support, as some options may be unavailable at the time of reading.`
+                    ru: `Да, вывод средств происходит без проблем. Pocket Option работает во многих странах, предлагая вывод средств на карты, кошельки и криптовалюты. </p>Обратитесь в службу поддержки, так как некоторые варианты могут быть недоступны на момент чтения.</p>`,
+                    en: `Yes, withdrawals are processed without any problems. Pocket Option operates in many countries, offering withdrawals to cards, wallets, and cryptocurrencies.</p>Check with support, as some options may be unavailable at the time of reading.</p>`
                 }
             }
         ]

@@ -9,8 +9,8 @@ const data = [
                 id: "get-bot",
                 q: { ru: "Как получить бота?", en: "How do I get a bot?" },
                 a: {
-                    ru: `Тебе нужно запустить бота и нажать на “ПОЛУЧИТЬ СИГНАЛ”, пройти регистрацию и пополнить аккаунт на любую сумму.<p>Запустить бота → <a href="ССЫЛКУ НА БОТА:)" target="_blank" rel="noreferrer">нажми сюда</a></p>`,
-                    en: `You need to launch the bot and click on “GET SIGNAL”, register, and top up your account with any amount.<p>Launch the bot → <a href="ССЫЛКУ НА БОТА:)" target="_blank" rel="noreferrer">click here</a></p>`
+                    ru: `Тебе нужно запустить бота и нажать на “ПОЛУЧИТЬ СИГНАЛ”, пройти регистрацию и пополнить аккаунт на любую сумму.<p>Запустить бота → <a href="https://t.me/gtpo_bot?start=start" target="_blank" rel="noreferrer">нажми сюда</a></p>`,
+                    en: `You need to launch the bot and click on “GET SIGNAL”, register, and top up your account with any amount.<p>Launch the bot → <a href="https://t.me/gtpo_bot?start=start" target="_blank" rel="noreferrer">click here</a></p>`
                 }
             },
             {

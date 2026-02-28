@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>GTPO Mini App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script defer src="src/main.js"></script>
+</head>
+<body class="app">
+<header class="app-header">
+    <div class="header-inner">
+        <a href="#" class="logo" aria-label="GTPO home">
+        </a>
+        <nav class="language-switcher" aria-label="Language selector">
+            <button class="lang-option" type="button" data-lang="en">EN</button>
+            <button class="lang-option" type="button" data-lang="ru">RU</button>
+            <button class="lang-option" type="button" data-lang="es">ES</button>
+            <button class="lang-option" type="button" data-lang="hi">HI</button>
+        </nav>
+    </div>
+</header>
+
+<main class="app-main">
+    <!-- Оборот бота за день -->
+    <section class="summary-card">
+        <div class="summary-header">
+            <span class="summary-label" data-i18n="summary.label">BOT TURNOVER TODAY</span>
+        </div>
+
+        <div class="summary-balance">
+            <span class="currency-symbol">$</span>
+            <span class="balance-value js-balance-value">1,734.94</span>
+            <span class="currency-code">USD</span>
+        </div>
+
+        <div class="summary-subrow">
+            <span class="summary-change js-balance-change">+3.59%</span>
+            <span class="summary-change-amount js-balance-change-amount">+132.51</span>
+        </div>
+
+        <div class="mode-toggle" role="tablist" aria-label="View mode">
+            <div class="mode-toggle-track">
+                <button class="mode-option is-active"
+                        data-mode="home"
+                        type="button"
+                        role="tab"
+                        aria-selected="true"
+                        data-i18n="mode.home">
+                    Home
+                </button>
+                <button class="mode-option"
+                        data-mode="trading"
+                        type="button"
+                        role="tab"
+                        aria-selected="false"
+                        data-i18n="mode.trading">
+                    Trading
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home: Favorites -->
+    <section class="favorites" data-mode-section="home">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="favorites.title">Favorites</h2>
+            <button class="see-all-btn" type="button" data-i18n="favorites.seeAll">See all</button>
+        </div>
+
+        <div class="asset-list" data-expanded="false"></div>
+    </section>
+
+    <!-- Home: GTPO AI cards -->
+    <section class="info-cards-section" data-mode-section="home">
+        <div class="info-section-header">
+            <h2 class="section-title" data-i18n="info.title">GTPO AI</h2>
+        </div>
+
+        <div class="info-grid" data-info-grid></div>
+    </section>
+
+    <!-- Home: FAQ -->
+    <section class="faq-section" data-mode-section="home">
+        <h2 class="section-title" data-i18n="faq.title">FAQ</h2>
+        <div class="faq-list" data-faq-list></div>
+    </section>
+
+    <!-- Trading: форма выбора для сигнала -->
+    <section class="trading-section" data-mode-section="trading" style="display:none">
+        <div class="trading-form">
+            <div class="trading-field" data-trading-field="pair">
+                <div class="trading-field-label" data-i18n="trading.pairLabel">Currency pair</div>
+                <button class="trading-field-control" type="button">
+                    <span class="trading-field-placeholder"
+                          data-i18n="trading.pairPlaceholder">Choose pair</span>
+                    <span class="trading-field-value"></span>
+                </button>
+            </div>
+
+            <div class="trading-field" data-trading-field="time">
+                <div class="trading-field-label" data-i18n="trading.timeLabel">Expiry time</div>
+                <button class="trading-field-control" type="button">
+                    <span class="trading-field-placeholder"
+                          data-i18n="trading.timePlaceholder">Choose time</span>
+                    <span class="trading-field-value"></span>
+                </button>
+            </div>
+
+            <div class="trading-field" data-trading-field="model">
+                <div class="trading-field-label" data-i18n="trading.modelLabel">AI model</div>
+                <button class="trading-field-control" type="button">
+                    <span class="trading-field-placeholder"
+                          data-i18n="trading.modelPlaceholder">Choose model</span>
+                    <span class="trading-field-value"></span>
+                </button>
+            </div>
+
+            <button class="trading-submit" type="button" disabled data-i18n="trading.submit">
+                Get signal
+            </button>
+
+            <!-- Analyzer block (always visible under button) -->
+            <div class="trading-analyzer" data-analyzer>
+                <div class="analyzer-header">
+                    <span class="analyzer-pill" data-i18n="analyzer.label">AI analyzer</span>
+                    <span class="analyzer-status" data-analyzer-status
+                          data-i18n="analyzer.statusIdle">Waiting for parameters</span>
+                </div>
+                <div class="analyzer-body">
+                    <p class="analyzer-line" data-analyzer-line-primary>
+                        Select pair, expiry and AI model to see how GTPO core reacts.
+                    </p>
+                    <p class="analyzer-line analyzer-line--muted" data-analyzer-line-secondary>
+                        The block will always show what the engine is focusing on right now.
+                    </p>
+                    <div class="analyzer-loader">
+                        <span class="loader-dot"></span>
+                        <span class="loader-dot"></span>
+                        <span class="loader-dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Попап инфо-карточек -->
+    <div class="info-modal" aria-hidden="true">
+        <div class="info-modal__backdrop"></div>
+        <div class="info-modal__sheet" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+            <div class="info-modal__handle"></div>
+            <button class="info-modal__close" type="button" aria-label="Close">
+                ✕
+            </button>
+            <p class="info-modal__tag" id="info-modal-tag"></p>
+            <h3 class="info-modal__title" id="info-modal-title"></h3>
+            <div class="info-modal__body" id="info-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Общий попап-пикер для трёх инпутов -->
+    <div class="picker-modal" data-picker-modal aria-hidden="true">
+        <div class="picker-modal__backdrop"></div>
+        <div class="picker-modal__sheet" role="dialog" aria-modal="true">
+            <div class="picker-modal__header">
+                <h3 class="picker-modal__title" id="picker-modal-title"></h3>
+                <p class="picker-modal__subtitle" id="picker-modal-subtitle"></p>
+            </div>
+            <div class="picker-modal__search-wrap" id="picker-modal-search-wrap">
+                <div class="picker-search">
+                    <span class="picker-search-icon">🔍</span>
+                    <input
+                            type="text"
+                            class="picker-search-input"
+                            id="picker-search-input"
+                            placeholder="Search"
+                            autocomplete="off"
+                    />
+                </div>
+            </div>
+            <div class="picker-modal__content" id="picker-modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Модалка торгового сигнала -->
+    <div class="signal-modal" data-signal-modal aria-hidden="true">
+        <div class="signal-modal__backdrop"></div>
+
+        <div class="signal-modal__dialog" role="dialog" aria-modal="true">
+            <div class="signal-modal__handle"></div>
+
+            <!-- CONTENT -->
+            <div data-signal-content>
+                <div class="signal-modal__header">
+                    <span class="signal-label" data-i18n="signal.label">AI signal</span>
+                    <span class="signal-risk" data-signal-risk-label>Risk: Moderate</span>
+                </div>
+
+                <div class="signal-modal__direction">
+                    <div class="signal-dir-pill" data-signal-dir-pill>BUY</div>
+                    <div class="signal-pair" data-signal-pair>Avalanche OTC</div>
+                    <div class="signal-model" data-signal-model>Orion v3 · S5</div>
+                </div>
+
+                <div class="signal-stat-grid">
+                    <div class="signal-stat">
+                        <div class="signal-stat-label" data-i18n="signal.confidenceLabel">Confidence</div>
+                        <div class="signal-stat-value" data-signal-confidence>81%</div>
+                    </div>
+                    <div class="signal-stat">
+                        <div class="signal-stat-label" data-i18n="signal.accuracyLabel">Backtest accuracy</div>
+                        <div class="signal-stat-value" data-signal-accuracy>73%</div>
+                    </div>
+                </div>
+
+                <div class="signal-info-grid">
+                    <div class="signal-info-row">
+                        <span class="signal-info-label" data-i18n="signal.marketLabel">Market</span>
+                        <span class="signal-info-value" data-signal-market>OTC</span>
+                    </div>
+                    <div class="signal-info-row">
+                        <span class="signal-info-label" data-i18n="signal.expiryLabel">Expiry</span>
+                        <span class="signal-info-value" data-signal-expiry>S5</span>
+                    </div>
+                    <div class="signal-info-row">
+                        <span class="signal-info-label" data-i18n="signal.issuedLabel">Issued</span>
+                        <span class="signal-info-value" data-signal-issued>14:59</span>
+                    </div>
+                    <div class="signal-info-row">
+                        <span class="signal-info-label" data-i18n="signal.validUntilLabel">Valid until</span>
+                        <span class="signal-info-value" data-signal-valid-until>15:01</span>
+                    </div>
+                </div>
+
+                <p class="signal-note" data-signal-note>
+                    Open Pocket Option, copy the direction, pair, expiry and keep risk per trade within your plan.
+                </p>
+
+                <div class="signal-modal__actions">
+                    <button type="button" class="signal-btn signal-btn--secondary" data-signal-repeat>
+                        Repeat
+                    </button>
+                    <button type="button" class="signal-btn signal-btn--primary" data-signal-close>
+                        Back to form
+                    </button>
+                </div>
+            </div>
+
+            <!-- LOADING -->
+            <div class="signal-loading" data-signal-loading hidden>
+                <div class="signal-loading-title" data-i18n="signal.loadingTitle">
+                    Analyzing market…
+                </div>
+                <div class="signal-loading-sub" data-i18n="signal.loadingSub">
+                    Checking volatility, liquidity and entry quality
+                </div>
+
+                <div class="analyzer-loader">
+                    <span class="loader-dot"></span>
+                    <span class="loader-dot"></span>
+                    <span class="loader-dot"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIP toast notification -->
+    <div class="vip-toast" data-vip-toast aria-live="polite"></div>
+</main>
+</body>
+</html>
